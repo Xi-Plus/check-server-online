@@ -38,7 +38,7 @@ while True:
     except Exception as e:
         beeps()
         msg = 'The server is down: {}'.format(e)
-        ctypes.windll.user32.MessageBoxW(0, msg, 'Error', 0)
         write_log(msg)
+        ctypes.windll.user32.MessageBoxW(0, msg, 'Error', 0)
 
     time.sleep(args.sleep)
