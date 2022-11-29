@@ -14,11 +14,10 @@ args = parser.parse_args()
 
 
 def beeps():
-    winsound.Beep(2000, 250)
-    time.sleep(0.25)
-    winsound.Beep(2000, 250)
-    time.sleep(0.25)
-    winsound.Beep(2000, 250)
+    for i in range(5):
+        if i > 0:
+            time.sleep(0.5)
+        winsound.Beep(2000, 500)
 
 
 log_path = os.path.join(BASEDIR, 'run.log')
@@ -36,9 +35,9 @@ while True:
         res = requests.get(args.url)
         write_log('touch')
     except Exception as e:
-        beeps()
         msg = 'The server is down: {}'.format(e)
         write_log(msg)
+        beeps()
         ctypes.windll.user32.MessageBoxW(0, msg, 'Error', 0)
 
     time.sleep(args.sleep)
